@@ -32,23 +32,23 @@ int spawn_list(int num_child)
 	return i;
 }
 
-int spawn_tree(int n)
+int spawn_tree(int n, k)
 {
 	int i, j;
 
 	i = 0;
-	while (i < n / 2)
+	while (i < n / k)
 	{
 		for (j = 0; j < n; j++)
 		{
 			if (fork() == 0)
 			{
-				i = 2 * i + j;
+				i = k * i + j;
 				break;
 			}
 		}
 
-		if (j > 2)
+		if (j > k)
 			return i;
 	}
 
@@ -70,9 +70,16 @@ void spawn_matrix(int num_nodes, int *x, int *y)
 	*y = 0;
 }
 
-int spawn_hypercube()
+int spawn_hypercube(int k)
 {
+	int i, j;
 
+	i = 0;
+
+	for (j = 0; j < k; j++)
+		if (fork() == 0)
+			i = (2 << j);
+	return i;
 }
 
 int main()
