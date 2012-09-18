@@ -32,7 +32,7 @@ int spawn_list(int num_child)
 	return i;
 }
 
-int spawn_tree(int n, k)
+int spawn_tree(int n, int k)
 {
 	int i, j;
 
@@ -86,7 +86,7 @@ int main()
 {
 	int value;
 
-	value = spawn_tree(6);
+	value = spawn_tree(6, 2);
 
 	printf("Value: %d\n", value);
 
